@@ -1,0 +1,226 @@
+
+<style>
+  h2.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .wrap{padding:1rem 0}
+  .main-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+  .main-header{padding:18px 24px;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .main-header h3{font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 6px}
+  .meta-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:8px}
+  .meta-pill{font-size:13px;font-weight:500;padding:4px 12px;border-radius:20px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+  .context-bar{background:#EAF3DE;border-bottom:0.5px solid #97C459;padding:11px 24px;display:flex;align-items:center;gap:10px}
+  .context-bar span{font-size:14px;color:#27500A;line-height:1.6}
+  .panel{padding:20px 24px;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .panel:last-child{border-bottom:none}
+  .panel-label{font-size:12px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .panel-label span{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);font-size:12px;font-weight:500;color:var(--color-text-primary);flex-shrink:0}
+  .formula-box{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px 16px;font-size:15px;text-align:center;color:var(--color-text-primary);margin-bottom:12px}
+  .ujian-row{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:var(--border-radius-md);margin-bottom:8px;font-size:15px}
+  .ujian-row:last-child{margin-bottom:0}
+  .ujian-ok{background:#EAF3DE;border:0.5px solid #97C459}
+  .ujian-bad{background:#FCEBEE;border:0.5px solid #F09595}
+  .node{padding:8px 18px;border-radius:8px;font-size:15px;font-weight:500;white-space:nowrap}
+  .n-green{background:#27500A;color:#C0DD97}
+  .n-teal{background:#085041;color:#9FE1CB}
+  .n-blue{background:#0C447C;color:#B5D4F4}
+  .n-purple{background:#26215C;color:#CECBF6}
+  .n-amber{background:#633806;color:#FAC775;border:2px solid #EF9F27}
+  .badge{font-size:12px;font-weight:500;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+  .b-green{background:#EAF3DE;color:#27500A;border:0.5px solid #97C459}
+  .b-teal{background:#E1F5EE;color:#085041;border:0.5px solid #5DCAA5}
+  .b-purple{background:#EEEDFE;color:#26215C;border:0.5px solid #AFA9EC}
+  .b-amber{background:#FAEEDA;color:#633806;border:0.5px solid #FAC775}
+  .terjemah-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .tj{border-radius:var(--border-radius-md);padding:12px 14px;font-size:14px;line-height:1.7}
+  .tj-ok{background:#EAF3DE;border:0.5px solid #97C459;color:#173404}
+  .tj-bad{background:#FCEBEE;border:0.5px solid #F09595;color:#501313}
+  .side-note{font-size:13px;color:var(--color-text-secondary);padding:10px 14px;background:var(--color-background-secondary);border-left:2px solid #97C459;margin-top:12px}
+  .urea-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .urea-card{border-radius:var(--border-radius-md);padding:14px 16px;font-size:14px;line-height:1.8}
+  .uc-amber{background:#FAEEDA;border:0.5px solid #FAC775;color:#412402}
+  .uc-blue{background:#E6F1FB;border:0.5px solid #85B7EB;color:#042C53}
+  .def-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .def-card{border-radius:var(--border-radius-md);padding:12px 14px;font-size:14px;line-height:1.7}
+  .def-ok{background:#EAF3DE;border:0.5px solid #97C459;color:#173404}
+  .def-warn{background:#FAEEDA;border:0.5px solid #FAC775;color:#412402}
+  .gap-row{display:grid;grid-template-columns:1fr 32px 1fr;gap:8px;align-items:center;margin-bottom:10px}
+  .lang-box{border-radius:var(--border-radius-md);padding:12px 14px;font-size:14px;line-height:1.6}
+  .lb-en{background:#E6F1FB;border:0.5px solid #85B7EB;color:#042C53}
+  .lb-bm{background:#EAF3DE;border:0.5px solid #97C459;color:#173404}
+  .lang-vs{text-align:center;font-size:18px;color:var(--color-border-secondary)}
+  .lang-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;opacity:.6;margin-bottom:4px}
+  .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+  .split-box{border-radius:var(--border-radius-md);padding:14px 16px;font-size:14px;line-height:1.7}
+  .sb-en{background:#E6F1FB;border:0.5px solid #85B7EB;color:#042C53}
+  .sb-bm{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary)}
+  .split-node{display:inline-block;padding:6px 16px;border-radius:6px;font-size:14px;font-weight:500;margin-top:8px}
+  .sn-teal{background:#085041;color:#9FE1CB}
+  .sn-red{background:#791F1F;color:#F7C1C1}
+  .split-note{font-size:13px;color:var(--color-text-secondary);padding:10px 14px;background:var(--color-background-secondary);border-left:2px solid #85B7EB;margin-top:12px}
+  .kesimpulan-panel{padding:22px 24px;background:var(--color-background-secondary)}
+  .kesimpulan-item{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+  .kesimpulan-item:last-child{border-bottom:none;padding-bottom:0}
+  .k-num{width:30px;height:30px;border-radius:50%;background:#27500A;color:#C0DD97;font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  .k-body h4{font-size:15px;font-weight:500;color:var(--color-text-primary);margin:0 0 4px}
+  .k-body p{font-size:14px;color:var(--color-text-secondary);margin:0;line-height:1.7}
+</style>
+
+<h2 class="sr-only">Infografik rumusan enam contoh dan tiga kesimpulan daripada rakaman audio kuliah minggu 13 tentang hipernim dan hiponim</h2>
+
+<div class="wrap">
+<div class="main-card">
+
+  <div class="main-header">
+    <h3>Hipernim dan hiponim dalam peristilahan bahasa Melayu</h3>
+    <div class="meta-row">
+      <span class="meta-pill">🎧 Rumusan rakaman audio</span>
+      <span class="meta-pill">Minggu 13</span>
+      <span class="meta-pill">HBT 301/4 · USM</span>
+    </div>
+  </div>
+
+  <div class="context-bar">
+    <span>ℹ️ Infografik ini merumuskan enam contoh yang dibincangkan dalam rakaman audio kuliah Minggu 13 — Kajian Bidang Terpilih: Pembentukan Istilah Bidang Sains. Gunakan bersama transkrip sebagai bahan ulang kaji.</span>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label"><span>1</span> Ujian asas hipernim-hiponim</div>
+    <div class="formula-box"><strong>"A adalah sejenis B"</strong> — jika masuk akal, A = hiponim &nbsp;·&nbsp; B = hipernim</div>
+    <div class="ujian-row ujian-ok">
+      <span style="flex-shrink:0;color:#3B6D11;font-size:16px">✓</span>
+      <span style="color:#173404"><strong>"Nasi lemak adalah sejenis makanan"</strong> — masuk akal<br>
+      <span style="font-size:13px;color:#3B6D11">Nasi lemak = hiponim &nbsp;·&nbsp; Makanan = hipernim &nbsp;·&nbsp; Ko-hiponim: mee goreng, roti canai</span></span>
+    </div>
+    <div class="ujian-row ujian-bad">
+      <span style="flex-shrink:0;color:#791F1F;font-size:16px">✗</span>
+      <span style="color:#501313"><strong>"Makanan adalah sejenis nasi lemak"</strong> — tidak masuk akal<br>
+      <span style="font-size:13px">Hubungan hipernim-hiponim tidak boleh dibalikkan</span></span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label"><span>2</span> Hierarki tiga aras — baja, baja nitrogen, urea</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+      <div class="node n-green">Baja (fertilizer)</div>
+      <div class="badge b-green">Hipernim utama</div>
+      <div style="font-size:13px;color:var(--color-text-secondary)">merangkumi semua jenis baja</div>
+    </div>
+    <div style="width:1px;height:16px;background:var(--color-border-secondary);margin-left:40px"></div>
+    <div style="display:flex;gap:0;align-items:flex-start;padding-left:36px">
+      <div style="width:1px;min-height:120px;background:var(--color-border-secondary);margin-right:14px;flex-shrink:0"></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div style="width:16px;height:1px;background:var(--color-border-secondary);flex-shrink:0"></div>
+          <div class="node n-teal">Baja nitrogen</div>
+          <div class="badge b-purple">Hiponim kepada baja</div>
+          <div class="badge b-teal">Hipernim kepada urea</div>
+        </div>
+        <div style="padding-left:30px">
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:1px;height:22px;background:var(--color-border-secondary);flex-shrink:0"></div></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:-4px;flex-wrap:wrap">
+            <div style="width:1px;height:10px;background:var(--color-border-secondary);flex-shrink:0"></div>
+            <div style="width:14px;height:1px;background:var(--color-border-secondary);flex-shrink:0"></div>
+            <div class="node n-amber">Urea</div>
+            <div class="badge b-amber">Hiponim kepada baja nitrogen</div>
+            <div style="font-size:13px;color:var(--color-text-secondary)">aras paling khusus</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div style="width:16px;height:1px;background:var(--color-border-secondary);flex-shrink:0"></div>
+          <div class="node n-blue">Baja fosfat</div>
+          <div class="badge b-purple">Hiponim kepada baja</div>
+          <div style="font-size:13px;color:var(--color-text-secondary)">ko-hiponim kepada baja nitrogen</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div style="width:16px;height:1px;background:var(--color-border-secondary);flex-shrink:0"></div>
+          <div class="node n-purple">Baja kalium</div>
+          <div class="badge b-purple">Hiponim kepada baja</div>
+          <div style="font-size:13px;color:var(--color-text-secondary)">ko-hiponim kepada baja nitrogen</div>
+        </div>
+      </div>
+    </div>
+    <div class="side-note" style="margin-top:14px">
+      <strong>Baja nitrogen serentak dua peranan</strong> — hiponim kepada baja (berada di bawahnya) dan hipernim kepada urea (berada di atasnya). Aras hierarki menentukan peranannya.
+    </div>
+    <div class="terjemah-grid">
+      <div class="tj tj-ok"><strong>✓ Tepat</strong><br>"apply urea" → gunakan urea<br>"apply fertilizer" → gunakan baja</div>
+      <div class="tj tj-bad"><strong>✗ Silap</strong><br>"apply urea" → gunakan baja<br>"apply fertilizer" → gunakan urea</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label"><span>3</span> Kenapa urea kekal "urea" dalam BM — bukan diterjemah?</div>
+    <div class="urea-grid">
+      <div class="urea-card uc-amber"><strong>Fertilizer → baja</strong><br>Boleh diterjemah kerana ia konsep kategori — merujuk kumpulan bahan, bukan satu entiti kimia.</div>
+      <div class="urea-card uc-blue"><strong>Urea → urea</strong><br>Tidak diterjemah kerana ia nama molekul kimia CO(NH₂)₂ — ditetapkan oleh IUPAC, universal merentas semua bahasa.</div>
+    </div>
+    <div class="side-note">Nama alternatif: <strong>karbamida</strong> — digunakan dalam beberapa bahasa Eropah Timur untuk molekul yang sama, bukan terjemahan BM. DBP kekalkan urea agar komunikasi saintifik antarabangsa tidak terputus.</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label"><span>4</span> Genus et differentia — formula definisi kamus</div>
+    <div class="formula-box" style="margin-bottom:12px"><strong>X ialah [hipernim] yang [ciri pembeza]</strong></div>
+    <div class="def-row">
+      <div class="def-card def-ok"><strong>✓ Tepat</strong><br>"Mawar ialah <u>sejenis bunga</u> yang berduri, harum baunya, dan berwarna merah, putih, atau merah jambu."<br><span style="font-size:12px;margin-top:6px;display:block">Hipernim = bunga → anchor kepada kategori betul</span></div>
+      <div class="def-card def-warn"><strong>⚠ Terlalu luas</strong><br>"Mawar ialah <u>tumbuhan</u> yang berduri..."<br><span style="font-size:12px;margin-top:6px;display:block">Tumbuhan lebih tinggi dari bunga dalam hierarki — definisi jadi kurang tepat</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label"><span>5</span> Kekosongan leksikal — BI vs BM</div>
+    <div class="gap-row">
+      <div class="lang-box lb-en"><div class="lang-label">Bahasa Inggeris</div><strong>finger</strong> — jari tangan<br><strong>toe</strong> — jari kaki<br><span style="font-size:12px;opacity:.7;margin-top:4px;display:block">2 hiponim berbeza</span></div>
+      <div class="lang-vs">↔</div>
+      <div class="lang-box lb-bm"><div class="lang-label">Bahasa Melayu</div><strong>jari</strong> — 1 hipernim<br>perlu pengkhusus: tangan / kaki<br><span style="font-size:12px;opacity:.7;margin-top:4px;display:block">kekosongan di aras hiponim</span></div>
+    </div>
+    <div class="gap-row">
+      <div class="lang-box lb-en"><div class="lang-label">Bahasa Inggeris</div><strong>disease</strong> — punca klinikal, ada diagnosis<br><strong>illness</strong> — pengalaman subjektif pesakit<br><span style="font-size:12px;opacity:.7;margin-top:4px;display:block">2 perspektif berbeza</span></div>
+      <div class="lang-vs">↔</div>
+      <div class="lang-box lb-bm"><div class="lang-label">Bahasa Melayu</div><strong>penyakit</strong> — menanggung beban kedua-dua konsep<br><br><span style="font-size:12px;opacity:.7;margin-top:4px;display:block">kekosongan leksikal dalam teks perubatan</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-label"><span>6</span> Faktor sosiobudaya — "drug" pecah menjadi dua dalam BM</div>
+    <div class="split-grid">
+      <div class="split-box sb-en">
+        <div style="font-size:12px;font-weight:500;margin-bottom:8px;opacity:.7;text-transform:uppercase;letter-spacing:.05em">Bahasa Inggeris</div>
+        <strong>drug</strong> — hipernim neutral<br>merangkumi semua bahan farmakologi tanpa konotasi negatif
+      </div>
+      <div class="split-box sb-bm">
+        <div style="font-size:12px;font-weight:500;margin-bottom:10px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em">Bahasa Melayu</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <div><div class="split-node sn-teal">ubat</div><div style="font-size:13px;color:var(--color-text-secondary);margin-top:6px">konteks perubatan<br>konotasi positif</div></div>
+          <div><div class="split-node sn-red">dadah</div><div style="font-size:13px;color:var(--color-text-secondary);margin-top:6px">konteks penyalahgunaan<br>konotasi negatif</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="split-note">Satu hipernim BI terpecah kepada dua istilah BM yang berbeza domain — bukti bahawa peristilahan tidak berlaku dalam vakum; bahasa, budaya, dan nilai masyarakat mempengaruhi struktur hierarki istilah</div>
+  </div>
+
+  <div class="kesimpulan-panel">
+    <div class="panel-label" style="margin-bottom:14px"><span style="background:#27500A;color:#C0DD97;border-color:#27500A">✓</span> Tiga kesimpulan penting</div>
+    <div class="kesimpulan-item">
+      <div class="k-num">1</div>
+      <div class="k-body">
+        <h4>Faham hierarki konsep sebelum pilih padanan istilah</h4>
+        <p>Padanan istilah bukan rawak — ada logiknya. Konsep umum biasanya menggunakan perkataan Melayu yang sedia ada, manakala konsep yang lebih teknikal dan khusus sering menggunakan istilah pinjaman atau istilah hibrid.</p>
+      </div>
+    </div>
+    <div class="kesimpulan-item">
+      <div class="k-num">2</div>
+      <div class="k-body">
+        <h4>Dalam terjemahan saintifik, kekalkan aras hierarki yang sama</h4>
+        <p>Jangan hipernimkan hiponim, jangan hiponimkan hipernim. Kedua-duanya adalah kesilapan yang mengubah makna teks asal.</p>
+      </div>
+    </div>
+    <div class="kesimpulan-item">
+      <div class="k-num">3</div>
+      <div class="k-body">
+        <h4>Peristilahan berlaku dalam konteks sosial dan budaya</h4>
+        <p>Kadang-kadang satu hipernim dalam bahasa sumber perlu dipecahkan kepada beberapa istilah dalam bahasa sasaran — dan itu bukan kelemahan, itu kepekaan linguistik.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
